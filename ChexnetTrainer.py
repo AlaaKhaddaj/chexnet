@@ -98,7 +98,8 @@ class ChexnetTrainer ():
             timestampDate = time.strftime("%d%m%Y")
             timestampEND = timestampDate + '-' + timestampTime
             
-            scheduler.step(losstensor.data[0])
+#             scheduler.step(losstensor.data[0])
+            scheduler.step(losstensor.data)
             
             if lossVal < lossMIN:
                 lossMIN = lossVal    
@@ -149,7 +150,8 @@ class ChexnetTrainer ():
             losstensor = loss(varOutput, varTarget)
             losstensorMean += losstensor
             
-            lossVal += losstensor.data[0]
+#             lossVal += losstensor.data[0]
+            lossVal += losstensor.data
             lossValNorm += 1
             
         outLoss = lossVal / lossValNorm
