@@ -1,8 +1,6 @@
 #!/bin/bash
 
 #SBATCH -o train.log-%j
-#SBATCH -c 40
-
 #SBATCH --gres=gpu:volta:2
 #SBATCH --exclusive
 
