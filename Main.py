@@ -38,8 +38,8 @@ def runTrain():
 
     #---- Neural network parameters: type of the network, is it pre-trained
     #---- on imagenet, number of classes
-    # nnArchitecture = DENSENET121
-    nnArchitecture = RESNET18
+    nnArchitecture = DENSENET121
+    # nnArchitecture = RESNET18
     # nnArchitecture = RESNET50
     nnIsTrained = True
     nnClassCount = 14
@@ -74,8 +74,8 @@ def runTest():
 
     pathDirData = './database'
     pathFileTest = './dataset/test_1.txt'
-    # nnArchitecture = 'DENSE-NET-121'
-    nnArchitecture = 'RES-NET-18'
+    nnArchitecture = 'DENSE-NET-121'
+    # nnArchitecture = 'RES-NET-18'
     # nnArchitecture = 'RES-NET-50'
     # nnArchitecture = 'DENSE-NET-169'
     nnIsTrained = True
@@ -84,8 +84,8 @@ def runTest():
     imgtransResize = 256
     imgtransCrop = 224
 
-    # pathModel = 'm-25012018-123527.pth.tar'
-    pathModel = 'm-21032021-160042.pth.tar'
+    pathModel = 'm-25012018-123527.pth.tar'
+    # pathModel = 'm-21032021-160042.pth.tar'
 
     timestampLaunch = ''
 

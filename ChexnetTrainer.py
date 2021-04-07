@@ -13,7 +13,7 @@ import torchvision.transforms as transforms
 import torch.optim as optim
 import torch.nn.functional as tfunc
 from torch.utils.data import DataLoader
-from torch.optim.lr_scheduler import ReduceLROnPlateau
+from torch.optim.lr_scheduler import ReduceLROnPlateau, CosineAnnealingWarmRestarts
 import torch.nn.functional as func
 import torch.cuda as cutorch
 
@@ -78,7 +78,8 @@ class ChexnetTrainer ():
 
         #-------------------- SETTINGS: OPTIMIZER & SCHEDULER
         optimizer = optim.Adam (model.parameters(), lr=0.0001, betas=(0.9, 0.999), eps=1e-08, weight_decay=1e-5)
-        scheduler = ReduceLROnPlateau(optimizer, factor = 0.1, patience = 5, mode = 'min')
+        # scheduler = ReduceLROnPlateau(optimizer, factor = 0.1, patience = 5, mode = 'min')
+        scheduler = CosineAnnealingWarmRestarts(optimizer, T_0 = 10, eta_min = 1e-6)
 
         #-------------------- SETTINGS: LOSS
         loss = torch.nn.BCELoss(size_average = True)

@@ -26,8 +26,8 @@ from ResnetModels import ResNet50
 from DatasetGenerator import DatasetGenerator
 
 
-#-------------------------------------------------------------------------------- 
-    
+#--------------------------------------------------------------------------------
+
 def download (nnArchitecture, nnIsTrained, nnClassCount):
 
     #-------------------- SETTINGS: NETWORK ARCHITECTURE
@@ -36,11 +36,11 @@ def download (nnArchitecture, nnIsTrained, nnClassCount):
     elif nnArchitecture == 'DENSE-NET-201': model = DenseNet201(nnClassCount, nnIsTrained)
     elif nnArchitecture == 'RES-NET-18': model = ResNet18(nnClassCount, nnIsTrained)
     elif nnArchitecture == 'RES-NET-50': model = ResNet50(nnClassCount, nnIsTrained)
-    
+
     model = torch.nn.DataParallel(model)
 
 if __name__ == "__main__":
-    download("DENSE-NET-169", True, 14)
-    # download("RES-NET-50", True, 14)
-                
+    download("DENSE-NET-121", True, 14)
+    # download("RES-NET-18", True, 14)
+
 

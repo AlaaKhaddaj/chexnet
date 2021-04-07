@@ -19,8 +19,29 @@ class ResNet18(nn.Module):
 
         self.resnet18 = torchvision.models.resnet18(pretrained=isTrained)
 
-        kernelCount = self.resnet18.fc.out_features
-        self.classifier = nn.Sequential(nn.Linear(kernelCount, classCount), nn.Sigmoid())
+        # kernelCount = self.resnet18.fc.out_features
+        kernelCount = self.resnet18.fc.in_features
+        self.resnet18.fc = nn.Sequential(nn.Linear(kernelCount, 1024),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(1024, 512),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(512, 256),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(256, 128),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(128, 64),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(64, 32),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(32, classCount))
+
+        self.classifier = nn.Sigmoid()
 
     def forward(self, x):
         x = self.resnet18(x)
@@ -35,8 +56,32 @@ class ResNet50(nn.Module):
 
         self.resnet50 = torchvision.models.resnet50(pretrained=isTrained)
 
-        kernelCount = self.resnet50.fc.out_features
-        self.classifier = nn.Sequential(nn.Linear(kernelCount, classCount), nn.Sigmoid())
+        # kernelCount = self.resnet50.fc.out_features
+        kernelCount = self.resnet50.fc.in_features
+        # self.resnet50.fc = nn.Linear(kernelCount, classCount)
+        # self.classifier = nn.Sigmoid()
+
+        self.resnet50.fc = nn.Sequential(nn.Linear(kernelCount, 1024),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(1024, 512),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(512, 256),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(256, 128),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(128, 64),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(64, 32),
+                                        nn.ReLU(),
+                                        nn.Dropout(0.2),
+                                        nn.Linear(32, classCount))
+
+        self.classifier = nn.Sigmoid()
 
     def forward(self, x):
         x = self.resnet50(x)
